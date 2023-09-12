@@ -1,0 +1,11 @@
+,Corpus,Sentences,Avg sentence length,Avg tokenized sentence length,Questions (proportion)
+0,aochildes,64258,6.34,7.17,0.39
+1,bnc_spoken,66100,12.55,16.06,0.17
+2,cbt,25946,22.0,25.49,0.03
+3,children_stories,5669,60.45,60.58,0.01
+4,gutenberg,90402,10.89,16.22,0.0
+5,open_subtitles,417984,7.0,9.94,0.17
+6,qed,91904,11.23,16.38,0.0
+7,simple_wikipedia,40876,36.62,51.28,0.0
+8,switchboard,9938,10.99,14.57,0.06
+9,wikipedia,19197,51.71,68.83,0.0
