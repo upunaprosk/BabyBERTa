@@ -86,9 +86,12 @@ class DataSet:
                                                     ) -> Tuple[int]:
 
             tokens = smart_tokenize(tokenizer, sequence)
-
-            res = [i for i, token in enumerate(tokens)
+            try:
+                res = [i for i, token in enumerate(tokens)
                    if token.endswith(configs.Data.mask_symbol)]
+            except:
+                res = [i for i, token in enumerate(tokens)
+                       if token.endswith(configs.Data.mask_symbol.content)]
             return tuple(res)
 
         data = list(zip(sequences, [_get_mask_pattern_from_probing_sequence(s) for s in sequences]))

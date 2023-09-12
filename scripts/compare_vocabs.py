@@ -13,7 +13,7 @@ from babyberta.io import load_tokenizer
 tokenizer_base = RobertaTokenizer.from_pretrained("roberta-base")
 
 
-path_tokenizer_config = configs.Dirs.tokenizers / 'babyberta.json'
+path_tokenizer_config = configs.Dirs.tokenizers / 'custom_tokenizer.json'
 tokenizer_baby = load_tokenizer(path_tokenizer_config, max_input_length=128)
 
 
@@ -34,8 +34,8 @@ print(f'{num_overlapping}/{num_total}={ratio:.2f} of BabyBERTa vocab items in Ro
 ###########################
 
 
-PATH_TO_SENTENCES = Path('/home/ph/Zorro/sentences/babyberta')
-PATH_TO_STOPWORDS = Path('/home/ph/Zorro/data/external_words/')
+PATH_TO_SENTENCES = Path('./sentences/babyberta')
+PATH_TO_STOPWORDS = Path('./data/external_words/')
 
 stop_words = set((PATH_TO_STOPWORDS / "stopwords.txt").open().read().split())
 
@@ -66,3 +66,4 @@ print(f'{num_overlapping}/{num_total}={ratio:.2f} of words in test suite in Robe
 # if names are not capitalized, names are split by roberta-base:
 print(tokenizer_base.tokenize('This is philip and edward.'))
 print(tokenizer_base.tokenize('This is Philip and Edward.'))
+print(tokenizer_baby.encode('This is Philip and Edward.', add_special_tokens=False).tokens)

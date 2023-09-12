@@ -15,12 +15,12 @@ from babyberta import configs
 params = Params.from_param2val(param2default)
 
 # Byte-level BPE tokenizer
-path_tokenizer_config = configs.Dirs.tokenizers / f'{params.tokenizer}.json'
+path_tokenizer_config = configs.Dirs.tokenizers / 'custom_tokenizer.json'
 tokenizer = load_tokenizer(path_tokenizer_config, params.max_input_length)
 
 # collect data for data-frame
 col2values = defaultdict(list)
-for data_path in configs.Dirs.corpora.glob('*.txt'):
+for data_path in configs.Dirs.corpora.glob('*.train'):
 
     # load sentences
     sentences = load_sentences_from_file(data_path,
@@ -38,6 +38,7 @@ for data_path in configs.Dirs.corpora.glob('*.txt'):
     avg_num_words_per_sentence = np.mean([len(s.split()) for s in sentences])
     avg_num_bpe_tokens_per_sentence = np.mean(dataset.tokenized_sequence_lengths)
 
+
     # collect
     corpus_name = data_path.stem
     col2values['Corpus'].append(corpus_name)
@@ -52,3 +53,4 @@ df.sort_values('Corpus', inplace=True)
 df = df.round(2)
 print(df)
 print(df.to_latex(index=False, bold_rows=True))
+df.to_csv("corpus_stats.csv")

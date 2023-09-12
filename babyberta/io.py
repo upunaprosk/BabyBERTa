@@ -34,7 +34,7 @@ def load_sentences_from_file(file_path: Path,
 
     res = []
     num_too_small = 0
-    with file_path.open('r') as line_by_line_file:
+    with file_path.open('r', encoding='utf8') as line_by_line_file:
 
         for sentence in line_by_line_file.readlines():
 
