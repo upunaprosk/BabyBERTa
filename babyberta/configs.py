@@ -1,5 +1,5 @@
 from pathlib import Path
-
+from tokenizers import AddedToken
 
 class Dirs:
     root = Path(__file__).parent.parent
@@ -19,7 +19,7 @@ class Dirs:
 class Data:
     min_sentence_length = 3
     train_prob = 1.0  # probability that sentence is assigned to train split
-    mask_symbol = '<mask>'
+    mask_symbol = AddedToken("<mask>", lstrip=True)
     pad_symbol = '<pad>'
     unk_symbol = '<unk>'
     bos_symbol = '<s>'
@@ -29,10 +29,7 @@ class Data:
 
 class Training:
     feedback_interval = 1000
-
-    # for the published paper, we trained as many steps as needed to complete all epochs.
-    # however, we only reported results of evaluations at a fixed checkpoint (e.g. 260k steps)
-    max_step = None
+    max_step = None  # max step of aonewsela with num_mask_patterns = 6 is 160K
 
 
 class Eval:
